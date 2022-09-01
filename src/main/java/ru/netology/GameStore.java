@@ -29,6 +29,8 @@ public class GameStore {
      * Проверяет наличие игры в каталоге и возврашает true
      * если игра есть и false иначе
      */
+
+    // ВОТ ТУТ ОШИБКА, КАТАЛОГ ДОЛЖЕН ПЕРЕБИРАТЬСЯ ДО КОНЦА I <= GAMES.SIZE
     public boolean containsGame(Game game) {
         for (int i = 1; i < games.size(); i++) {
             if (games.get(i - 1).equals(game)) {
@@ -43,6 +45,10 @@ public class GameStore {
      * за игрой этого каталога. Игрок задаётся по имени. Время должно
      * суммироваться с прошлым значением для этого игрока
      */
+
+    // ВОТ ТУТ КАКАЯ-ТО ФИГНЯ НАПИСАНА
+    // ИГРОК ДОПУСТИМ УЖЕ ИГРАЛ В ИГРУ, ЕГО ЧИСЛО БОЛЬШЕ НУЛЯ ИЛИ НОЛ ЧАСОВ ПОХЕР
+    // ТАК ЧТОБЫ ПОЛОЖИТЬ ЧАСЫ ИГРЫ НУЖНО ПОЛУЧИТЬ ПРОШЛЫЕ ЧАСЫ ИГРЫ, ПРИБАВИТЬ НОВЫЕ И ПОЛОЖИТЬ ОБРАТНО ЧИСЛО СУММУ
     public void addPlayTime(String playerName, int hours) {
         if (playedTime.containsKey(playerName)) {
             playedTime.put(playerName, playedTime.get(playerName));
@@ -55,6 +61,9 @@ public class GameStore {
      * Ищет имя игрока, который играл в игры этого каталога больше всего
      * времени. Если игроков нет, то возвращется null
      */
+    // ЧТО ЕСЛИ ИГРОКОВ НЕСКОЛЬКО С ОДИНАКОВЫМ ЧИСЛОМ ЧАСОВ
+    // ЧТО ЕСЛИ В КАТАЛОГЕ ОДИН ИГРОК И ОН ПОКА ИГРАЛ 0 ЧАСОВ (НЕ ДОШЕЛ ДО ПОЛНОГО ЧАСА =))
+    // ЧТО ЕСЛИ ИГРОК В КАТАЛОГЕ ЕСТЬ И ОН ИГРАЛ 1 ЧАС (ОШИБКА В PLAYERTIME > MOSTTIME НАДО >=
     public String getMostPlayer() {
         int mostTime = 1;
         String bestPlayer = null;
