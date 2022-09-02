@@ -62,7 +62,7 @@ public class GameStoreTest {
         Assertions.assertEquals(expected, actual);
     }
 
-    /*@Test
+    @Test
     public void shouldShowTwoMostPlayerIfOneGameInRepoIfUsersPlayedSeveralTimesIfWinnerPlayedALotOfHours() {
         Game game = store.publishGame("Титаны", "Хорроры");
 
@@ -73,11 +73,23 @@ public class GameStoreTest {
         store.addPlayTime("moon9", 2);
         store.addPlayTime("looser", 6);
 
-        String[] expected = {"moon11", "looser"};
-        String[] actual = store.getMostPlayer();
+        /*String[] expected = {"moon11", "looser"};
+        String[] actual = */store.getMostPlayer();
 
-        Assertions.assertArrayEquals(expected, actual);
-    }*/
+        /*Assertions.assertArrayEquals(expected, actual);*/}
+
+        @Test
+        public void shouldShowTwoOrMoreMostPlayerIfUsersPlayedEqualHours() {
+            Game game = store.publishGame("Титаны", "Хорроры");
+
+            store.addPlayTime("moon11", 5);
+            store.addPlayTime("moon9", 5);
+
+        /*String[] expected = {"moon11", "moon9"};
+        String[] actual = */store.getMostPlayer();
+
+            /*Assertions.assertArrayEquals(expected, actual);*/
+    }
 
     /*@Test
     public void shouldShowMoreThatTwoMostPlayerIfOneGameInRepoIfUsersPlayedOneTimesIfEachWinnerPlayedOneHour() {
@@ -176,5 +188,18 @@ public class GameStoreTest {
     // GETSUM ДОЛЖНА РАБОТАТЬ ПРИ ОДНОМ ЮЗЕРЕ В ПРОГЕ
     // ПРИ МНОГИХ ЮЗЕРАХ В ПРОГЕ
     // ПРИ МНОГИХ ИГРАХ, КОГДА МНОГО ЮЗЕРОВ ИГРАЕТ В РАЗНЫЕ ИГРЫ
+    // ПРИ МНОГИХ ИГРАХ И ЮЗЕРАХ И СЕССИЯХ ИГРЫ
+
+    @Test
+    public void shouldSumPlayTimeOfAllUsersIfManyUsersPlayedInGameStore() {
+        store.addPlayTime("moon11", 1);
+        store.addPlayTime("moon9", 6);
+        store.addPlayTime("looser", 4);
+
+        int expected = 11;
+        int actual = store.getSumPlayedTime();
+
+        Assertions.assertEquals(expected, actual);
+    }
 }
 
